@@ -3,3 +3,9 @@
   max-width: 400px;
   width: 90vw;
 }
+
+.btn-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  place-items: center;
+}
