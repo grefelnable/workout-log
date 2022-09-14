@@ -1,12 +1,15 @@
 import React from "react";
+import { useState } from "react";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
 const AddWorkout = () => {
+  const [workout, setWorkout] = useState("");
+  const [sets, setSets] = useState("");
+  const [reps, setReps] = useState("");
   return (
     <>
-      {/* Workout inputs */}
       <Form className="input__container mb-3">
         <FloatingLabel
           controlId="floatingInput"
@@ -15,11 +18,7 @@ const AddWorkout = () => {
         >
           <Form.Control type="text" placeholder="Workout name" />
         </FloatingLabel>
-        <FloatingLabel
-          controlId="floatingPassword"
-          label="Sets"
-          className="mb-3"
-        >
+        <FloatingLabel controlId="floatingInput" label="Sets" className="mb-3">
           <Form.Control type="number" placeholder="Sets" />
         </FloatingLabel>
         <FloatingLabel
@@ -36,7 +35,6 @@ const AddWorkout = () => {
           </Button>
         </div>
       </Form>
-      {/* end of Workout inputs */};
     </>
   );
 };

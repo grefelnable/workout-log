@@ -15,7 +15,6 @@ function App() {
       </Navbar>
       <br />
       <AddWorkout />
-
       {/* table */}
       <Container>
         <Table striped bordered hover variant="dark" className="text-center">
