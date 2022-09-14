@@ -35,6 +35,10 @@ const AddWorkout = () => {
     } catch (err) {
       setMessage({ error: true, msg: err.message });
     }
+
+    setWorkout("");
+    setSets("");
+    setReps("");
   };
   return (
     <>
