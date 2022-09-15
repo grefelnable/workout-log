@@ -15,7 +15,6 @@ const WorkoutList = () => {
   };
   return (
     <Container>
-      <pre>{JSON.stringify(workouts, undefined, 2)}</pre>
       <Table striped bordered hover variant="dark" className="text-center">
         <thead>
           <tr>
@@ -28,12 +27,13 @@ const WorkoutList = () => {
         </thead>
         <tbody>
           {workouts.map((doc, index) => {
+            const { id, created, workout, sets, reps } = doc;
             return (
-              <tr key={doc.id}>
-                <td>{doc.created}</td>
-                <td>{doc.workout}</td>
-                <td>{doc.sets}</td>
-                <td>{doc.reps}</td>
+              <tr key={id}>
+                <td>{created}</td>
+                <td>{workout}</td>
+                <td>{sets}</td>
+                <td>{reps}</td>
                 <td>
                   <div className="btn-container">
                     <Button variant="success">Edit</Button>
