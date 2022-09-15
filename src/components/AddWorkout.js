@@ -20,7 +20,6 @@ const AddWorkout = () => {
       setMessage({ error: true, msg: "All fields are mandatory!" });
       return;
     }
-
     const newWorkout = {
       workout,
       sets,
