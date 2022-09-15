@@ -4,17 +4,27 @@ import WorkoutDataService from "../services/workout.services";
 
 const WorkoutList = () => {
   const [workouts, setWorkouts] = useState([]);
-  //useeffect
+  //useeffect to fetch data from firestore
   useEffect(() => {
     getWorkouts();
   }, []);
-  //
+  // fetch data from firestore function
   const getWorkouts = async () => {
     const data = await WorkoutDataService.getAllWorkout();
     setWorkouts(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
   };
+  //Delete a workout
+  const deleteHandler = async (id) => {
+    await WorkoutDataService.deleteWorkout(id);
+    getWorkouts();
+  };
   return (
     <Container>
+      <div className="mb-3">
+        <Button variant="dark edit" onClick={getWorkouts}>
+          Refresh List
+        </Button>
+      </div>
       <Table striped bordered hover variant="dark" className="text-center">
         <thead>
           <tr>
@@ -36,7 +46,10 @@ const WorkoutList = () => {
                 <td>{reps}</td>
                 <td>
                   <div className="btn-container">
-                    <Button variant="success" onClick={(e) => getWorkoutId(id)}>
+                    <Button
+                      variant="success"
+                      // onClick={(e) => getWorkoutId(id)}
+                    >
                       Edit
                     </Button>
                     <Button variant="danger" onClick={(e) => deleteHandler(id)}>
