@@ -20,12 +20,21 @@ const AddWorkout = () => {
       setMessage({ error: true, msg: "All fields are mandatory!" });
       return;
     }
+    // Date as timestamp for the workout made
+    let options = {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    };
+    const date = new Date();
+    const formatDate = date.toLocaleDateString("en-US", options);
 
     const newWorkout = {
       workout,
       sets,
       reps,
-      created: new Date(),
+      created: formatDate,
     };
     try {
       await WorkoutDataService.addWorkout(newWorkout);

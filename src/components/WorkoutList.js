@@ -11,7 +11,6 @@ const WorkoutList = () => {
   //
   const getWorkouts = async () => {
     const data = await WorkoutDataService.getAllWorkout();
-    console.log(data.docs);
     setWorkouts(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
   };
   return (
@@ -31,7 +30,7 @@ const WorkoutList = () => {
           {workouts.map((doc, index) => {
             return (
               <tr key={doc.id}>
-                <td>{Date(doc.created)}</td>
+                <td>{doc.created}</td>
                 <td></td>
                 <td>4</td>
                 <td>12</td>
