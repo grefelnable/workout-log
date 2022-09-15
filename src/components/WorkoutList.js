@@ -1,9 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Table, Container } from "react-bootstrap";
+import WorkoutDataService from "../services/workout.services";
 
 const WorkoutList = () => {
+  const [workouts, setWorkouts] = useState([]);
+  //useeffect
+  useEffect(() => {
+    getWorkouts();
+  }, []);
+
+  //
+  const getWorkouts = async () => {
+    const data = await WorkoutDataService.getAllWorkout();
+    console.log(data.docs);
+    setWorkouts(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+  };
   return (
     <Container>
+      <pre>{JSON.stringify(workouts, undefined, 2)}</pre>
       <Table striped bordered hover variant="dark" className="text-center">
         <thead>
           <tr>
@@ -15,30 +29,22 @@ const WorkoutList = () => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>September 13</td>
-            <td>Bench Press</td>
-            <td>4</td>
-            <td>12</td>
-            <td>
-              <div className="btn-container">
-                <Button variant="success">Edit</Button>
-                <Button variant="danger">Delete</Button>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td>September 13</td>
-            <td>Bicep Curl</td>
-            <td>4</td>
-            <td>12</td>
-            <td>
-              <div className="btn-container">
-                <Button variant="success">Edit</Button>
-                <Button variant="danger">Delete</Button>
-              </div>
-            </td>
-          </tr>
+          {workouts.map((doc, index) => {
+            return (
+              <tr key={doc.id}>
+                <td>{Date(doc.created)}</td>
+                <td></td>
+                <td>4</td>
+                <td>12</td>
+                <td>
+                  <div className="btn-container">
+                    <Button variant="success">Edit</Button>
+                    <Button variant="danger">Delete</Button>
+                  </div>
+                </td>
+              </tr>
+            );
+          })}
         </tbody>
       </Table>
     </Container>
