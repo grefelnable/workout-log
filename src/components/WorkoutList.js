@@ -26,7 +26,7 @@ const WorkoutList = () => {
           </tr>
         </thead>
         <tbody>
-          {workouts.map((doc, index) => {
+          {workouts.map((doc) => {
             const { id, created, workout, sets, reps } = doc;
             return (
               <tr key={id}>
@@ -36,8 +36,12 @@ const WorkoutList = () => {
                 <td>{reps}</td>
                 <td>
                   <div className="btn-container">
-                    <Button variant="success">Edit</Button>
-                    <Button variant="danger">Delete</Button>
+                    <Button variant="success" onClick={(e) => getWorkoutId(id)}>
+                      Edit
+                    </Button>
+                    <Button variant="danger" onClick={(e) => deleteHandler(id)}>
+                      Delete
+                    </Button>
                   </div>
                 </td>
               </tr>
