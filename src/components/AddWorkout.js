@@ -20,7 +20,6 @@ const AddWorkout = () => {
       setMessage({ error: true, msg: "All fields are mandatory!" });
       return;
     }
-<<<<<<< HEAD
     // Date as timestamp for the workout made
     let options = {
       weekday: "long",
@@ -31,8 +30,6 @@ const AddWorkout = () => {
     const date = new Date();
     const formatDate = date.toLocaleDateString("en-US", options);
 
-=======
->>>>>>> refs/remotes/origin/main
     const newWorkout = {
       workout,
       sets,
