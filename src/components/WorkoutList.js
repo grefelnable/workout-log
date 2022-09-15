@@ -7,6 +7,14 @@ const WorkoutList = () => {
   //useeffect
   useEffect(() => {
     getWorkouts();
+    var options = {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    };
+    const date = new Date();
+    console.log(date.toLocaleDateString("en-US", options));
   }, []);
   //
   const getWorkouts = async () => {
@@ -30,7 +38,11 @@ const WorkoutList = () => {
           {workouts.map((doc, index) => {
             return (
               <tr key={doc.id}>
+<<<<<<< HEAD
                 <td>{doc.created}</td>
+=======
+                <td></td>
+>>>>>>> refs/remotes/origin/main
                 <td></td>
                 <td>4</td>
                 <td>12</td>
