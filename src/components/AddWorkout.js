@@ -3,7 +3,6 @@ import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Alert from "react-bootstrap/Alert";
-import { Timestamp } from "firebase/firestore";
 import WorkoutDataService from "../services/workout.services";
 
 const AddWorkout = () => {
@@ -26,7 +25,7 @@ const AddWorkout = () => {
       workout,
       sets,
       reps,
-      created: Timestamp.now(),
+      created: new Date(),
     };
     try {
       await WorkoutDataService.addWorkout(newWorkout);
