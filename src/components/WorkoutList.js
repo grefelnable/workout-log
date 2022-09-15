@@ -8,7 +8,6 @@ const WorkoutList = () => {
   useEffect(() => {
     getWorkouts();
   }, []);
-
   //
   const getWorkouts = async () => {
     const data = await WorkoutDataService.getAllWorkout();
