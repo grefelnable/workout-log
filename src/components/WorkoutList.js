@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Button, Table, Container } from "react-bootstrap";
 import WorkoutDataService from "../services/workout.services";
 
-const WorkoutList = () => {
+const WorkoutList = ({ getWorkoutId }) => {
   const [workouts, setWorkouts] = useState([]);
   //useeffect to fetch data from firestore
   useEffect(() => {
@@ -46,10 +46,7 @@ const WorkoutList = () => {
                 <td>{reps}</td>
                 <td>
                   <div className="btn-container">
-                    <Button
-                      variant="success"
-                      // onClick={(e) => getWorkoutId(id)}
-                    >
+                    <Button variant="success" onClick={(e) => getWorkoutId(id)}>
                       Edit
                     </Button>
                     <Button variant="danger" onClick={(e) => deleteHandler(id)}>
