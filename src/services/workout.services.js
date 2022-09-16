@@ -34,7 +34,7 @@ class WorkoutDataService {
   };
   //Getting specific workout
   getWorkout = (id) => {
-    const workoutDoc = doc(db, "books", id);
+    const workoutDoc = doc(db, "workout", id);
     return getDoc(workoutDoc);
   };
 }
