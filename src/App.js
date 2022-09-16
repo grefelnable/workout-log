@@ -21,7 +21,7 @@ function App() {
         </Container>
       </Navbar>
       <br />
-      <AddWorkout />
+      <AddWorkout id={workoutId} setWorkoutId={setWorkoutId} />
       {/* table */}
       <WorkoutList getWorkoutId={getWorkoutIdHandler} />
     </>
