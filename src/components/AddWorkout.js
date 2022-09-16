@@ -37,8 +37,14 @@ const AddWorkout = ({ id, setWorkoutId }) => {
       created: formatDate,
     };
     try {
-      await WorkoutDataService.addWorkout(newWorkout);
-      setMessage({ error: false, msg: "New workout added successfully!" });
+      if (id !== undefined && id !== "") {
+        await WorkoutDataService.updateWorkout(id, newWorkout);
+        setWorkoutId("");
+        setMessage({ error: false, msg: "Updated successfully!" });
+      } else {
+        await WorkoutDataService.addWorkout(newWorkout);
+        setMessage({ error: false, msg: "New workout added successfully!" });
+      }
     } catch (err) {
       setMessage({ error: true, msg: err.message });
     }
