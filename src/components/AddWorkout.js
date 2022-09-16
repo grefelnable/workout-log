@@ -47,6 +47,27 @@ const AddWorkout = ({ id, setWorkoutId }) => {
     setSets("");
     setReps("");
   };
+  //Populate the form of the specific workout to be edited
+  const editHandler = async () => {
+    setMessage("");
+    try {
+      const docSnap = await WorkoutDataService.getWorkout(id);
+      console.log("The record is:", docSnap.data());
+      setWorkout(docSnap.data().workout);
+      setSets(docSnap.data().sets);
+      setReps(docSnap.data().reps);
+    } catch (err) {
+      setMessage({ error: true, msg: err.message });
+    }
+  };
+
+  //To edit workout
+  useEffect(() => {
+    console.log("The id here is : ", id);
+    if (id !== undefined && id !== "") {
+      editHandler();
+    }
+  }, [id]);
   return (
     <>
       {message?.msg && (
