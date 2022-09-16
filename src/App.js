@@ -9,7 +9,7 @@ function App() {
   const [workoutId, setWorkoutId] = useState("");
 
   const getWorkoutIdHandler = (id) => {
-    console.log("The ID of document to be edited", id);
+    console.log("The ID of document to be edited : ", id);
     setWorkoutId(id);
   };
 
