@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Alert from "react-bootstrap/Alert";
 import WorkoutDataService from "../services/workout.services";
 
-const AddWorkout = () => {
+const AddWorkout = ({ id, setWorkoutId }) => {
   const [workout, setWorkout] = useState("");
   const [sets, setSets] = useState("");
   const [reps, setReps] = useState("");
