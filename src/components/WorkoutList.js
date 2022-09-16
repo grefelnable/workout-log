@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Button, Table, Container } from "react-bootstrap";
+import { Button, Table, Container, Modal } from "react-bootstrap";
 import WorkoutDataService from "../services/workout.services";
 
 const WorkoutList = ({ getWorkoutId }) => {
   const [workouts, setWorkouts] = useState([]);
-  //useeffect to fetch data from firestore
+  //Popup if user wants to delete
+  const [popup, setPopup] = useState({ show: false, id: null });
+  //useffect to fetch data from firestore
   useEffect(() => {
     getWorkouts();
   }, []);
@@ -13,13 +15,28 @@ const WorkoutList = ({ getWorkoutId }) => {
     const data = await WorkoutDataService.getAllWorkout();
     setWorkouts(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
   };
+  //Popup show and hide
+  const handlePopup = (id) => setPopup({ show: true, id });
+  const handleCancel = () => setPopup({ show: false, id: null });
   //Delete a workout
-  const deleteHandler = async (id) => {
-    await WorkoutDataService.deleteWorkout(id);
+  const deleteHandler = async () => {
+    await WorkoutDataService.deleteWorkout(popup.id);
     getWorkouts();
+    setPopup({ show: false, id: null });
   };
   return (
     <Container>
+      <Modal show={popup.show} onHide={handleCancel}>
+        <Modal.Body>Are you sure you want to delete workout?</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={deleteHandler}>
+            OK
+          </Button>
+          <Button variant="primary" onClick={handleCancel}>
+            Cancel
+          </Button>
+        </Modal.Footer>
+      </Modal>
       <div className="mb-3">
         <Button variant="dark edit" onClick={getWorkouts}>
           Refresh List
@@ -49,7 +66,7 @@ const WorkoutList = ({ getWorkoutId }) => {
                     <Button variant="success" onClick={(e) => getWorkoutId(id)}>
                       Edit
                     </Button>
-                    <Button variant="danger" onClick={(e) => deleteHandler(id)}>
+                    <Button variant="danger" onClick={(e) => handlePopup(id)}>
                       Delete
                     </Button>
                   </div>
