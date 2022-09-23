@@ -12,8 +12,8 @@ import {
 
 const workoutCollectionRef = collection(db, "workout");
 class WorkoutDataService {
+  //Add new workout
   addWorkout = (newWorkout) => {
-    //Add new workout
     return addDoc(workoutCollectionRef, newWorkout);
   };
   //Update workout
